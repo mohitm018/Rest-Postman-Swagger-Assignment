@@ -1,0 +1,272 @@
+{
+	"info": {
+		"_postman_id": "5ab1ef70-bfc9-4c9f-a7c0-f780b9e594fb",
+		"name": "Postman Assignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30851813"
+	},
+	"item": [
+		{
+			"name": "Visualize table",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"var template = `",
+							"<style type=\"text/css\">",
+							"    table {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse; box-sizing: border-box;}",
+							"    th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px !important;border-style: solid;border-color: #87ceeb;text-align:left;}",
+							"    tr {background-color:#ffffff;}",
+							"    td {font-size:14px;border-width: 1px;padding: 8px !important;border-style: solid;border-color: #87ceeb;}",
+							"    tr:hover {background-color:#e0ffff;}",
+							"</style>",
+							"    ",
+							"<table border=\"1\">",
+							"    <tr>",
+							"        <th>Name</th>",
+							"        <th>Email</th>",
+							"    </tr>",
+							"    ",
+							"    {{#each response.data.contacts}}",
+							"        <tr>",
+							"            <td>{{name}}</td>",
+							"            <td>{{email}}</td>",
+							"        </tr>",
+							"    {{/each}}",
+							"</table>",
+							"`;",
+							"",
+							"",
+							"pm.visualizer.set(template, {",
+							"    response: JSON.parse(responseBody)",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"contacts\": [\n\t\t{\n\t\t\t\"name\": \"{{$randomFullName}}\",\n\t\t\t\"email\": \"{{$randomEmail}}\"\n\t\t},\n\t\t{\n\t\t\t\"name\": \"{{$randomFullName}}\",\n\t\t\t\"email\": \"{{$randomEmail}}\"\n\t\t},\n\t\t{\n\t\t\t\"name\": \"{{$randomFullName}}\",\n\t\t\t\"email\": \"{{$randomEmail}}\"\n\t\t},\n\t\t{\n\t\t\t\"name\": \"{{$randomFullName}}\",\n\t\t\t\"email\": \"{{$randomEmail}}\"\n\t\t}\n\t\t]\n}\n\t\t",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://postman-echo.com/post",
+					"protocol": "https",
+					"host": [
+						"postman-echo",
+						"com"
+					],
+					"path": [
+						"post"
+					]
+				},
+				"description": "This request visualizes the response body as a table. The data for the table includes randomly generated names and e-mails from postman-echo.\n\nTo visualize your response as a table, replace the sample request URL with your API. Or you can copy the test script from the “Test” tab and reuse it."
+			},
+			"response": []
+		},
+		{
+			"name": "Visualize table for User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var template = `\r",
+							"<style type=\"text/css\">\r",
+							"    table {\r",
+							"        font-size: 14px;\r",
+							"        color: #333333;\r",
+							"        width: 100%;\r",
+							"        border-width: 1px;\r",
+							"        border-color: #87ceeb;\r",
+							"        border-collapse: collapse;\r",
+							"        box-sizing: border-box;\r",
+							"    }\r",
+							"\r",
+							"    th {\r",
+							"        font-size: 18px;\r",
+							"        background-color: #87ceeb;\r",
+							"        border-width: 1px;\r",
+							"        padding: 8px !important;\r",
+							"        border-style: solid;\r",
+							"        border-color: #87ceeb;\r",
+							"        text-align: left;\r",
+							"    }\r",
+							"\r",
+							"    tr {\r",
+							"        background-color: #ffffff;\r",
+							"    }\r",
+							"\r",
+							"    td {\r",
+							"        font-size: 14px;\r",
+							"        border-width: 1px;\r",
+							"        padding: 8px !important;\r",
+							"        border-style: solid;\r",
+							"        border-color: #87ceeb;\r",
+							"    }\r",
+							"\r",
+							"    tr:hover {\r",
+							"        background-color: #e0ffff;\r",
+							"    }\r",
+							"</style>\r",
+							"\r",
+							"<table border=\"1\">\r",
+							"    <tr>\r",
+							"        <th>Name</th>\r",
+							"        <th>Email</th>\r",
+							"    </tr>\r",
+							"    \r",
+							"    {{#each response}}\r",
+							"        <tr>\r",
+							"            <td>{{userName}}</td>\r",
+							"            <td>{{email}}</td>\r",
+							"        </tr>\r",
+							"    {{/each}}\r",
+							"</table>\r",
+							"`;\r",
+							"\r",
+							"pm.visualizer.set(template, {\r",
+							"    response: JSON.parse(responseBody)\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\" : \"Mohit\",\r\n    \"email\" : \"mohitpatil012@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User By Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\",function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"var responseBody = pm.response.json();\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response Body With User Id\",function(){\r",
+							"    pm.expect(responseBody.id).to.equal(3);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response Body With User Name\",function(){\r",
+							"    pm.expect(responseBody.userName).to.equal(\"Mohit\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/users/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "eq-starttime",
+			"value": ""
+		},
+		{
+			"key": "eq-endtime",
+			"value": ""
+		}
+	]
+}
